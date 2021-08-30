@@ -16,49 +16,102 @@ console.log('***** Music Collection *****')
 
 // ### Required Features
 
-// - Create a variable `collection` that starts as an empty array.
-let recordCollection = [];
+// - Create a variable `collection` that starts as an empty collection.
+let collection = [];
 
-function addToCollection( newTitle, newArtist, newYearPublished ){
+function addToCollection( title, artist, yearPublished ){
+    
     let newRecord = {
-        title : newTitle,
-        artist : newArtist,
-        yearPublished : newYearPublished
+        recordTitle: title,
+        recordArtist: artist,
+        recordYear: yearPublished
     }
-    recordCollection.push( newRecord );
+    collection.push(newRecord);
     return newRecord;
+}
 // - Add a function named `addToCollection`. This function should:
 //   - Take in the album's `title`, `artist`, `yearPublished` as input parameters
 //   - Create a new object having the above properties
-//   - Add the new object to the end of the `collection` array
+//   - Add the new object to the end of the `collection` collection
 //   - Return the newly created object
-} // end AddToCollection
-addToCollection( 'Dark Side of the Moon', 'Pink Floyd', 1973 );
-addToCollection( 'Taylor Swift', 'Twenty Three', 2016 );
-addToCollection( 'Wilco', 'A.M.', 1996);
-addToCollection( 'Wilco', 'Star Wars', 2016 );
-addToCollection( 'Taylor Swift', 'Evermore', 2020 );
-addToCollection( 'Wilco', 'Yankee Hotel Foxtrot', 2002);
-console.log(recordCollection);
+ // end AddToCollection
+addToCollection( 'Dark Side of the Moon','Pink Floyd',1973 );
+console.log(collection[0],'Added to Our Record Collection');
+addToCollection( '23','Taylor Swift',2016 );
+console.log(collection[1],'Added to Our Record Collection');
+addToCollection( 'A.M.','Wilco',1996);
+console.log(collection[2],'Added to Our Record Collection');
+addToCollection( 'Star Wars','Wilco',2016 );
+console.log(collection[3],'Added to Our Record Collection');
+addToCollection( 'Evermore','Taylor Swift',2020 );
+console.log(collection[4],'Added to Our Record Collection');
+addToCollection( 'Yankee Hotel Foxtrot','Wilco',2001);
+console.log(collection[5],'Added to Our Record Collection');
+console.log(collection);
 
 // - Test the `addToCollection` function:
 //   - Add 6 albums to your collection. Aim to have a mix of both same and different artists and published years. (Feel free to share your musical interests, or make stuff up. Totally fine either way.)
 //   - Console.log each album as added using the returned value.
-//   - After all are added, console.log the `collection` array.
+//   - After all are added, console.log the `collection` collection.
+// 
+function showCollection( anyCollection ){
+    //   - Console.log the number of items in the array.
+        console.log( anyCollection.length);
+    //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
+        for ( i=0; i<anyCollection.length; i++){
+            console.log( anyCollection[i].recordTitle, 'by', anyCollection[i].recordArtist, ', published in', anyCollection[i].albumYear, '.');
+           //   - Update the `showCollection` function to display the list of tracks for 
+        } //end for loop
+    } //end showCollection function
+    
+    // - Test the `showCollection` function.
+    showCollection( collection );
+    
+    // - Add a function named `findByArtist`. This function should:
+    //   - Take in `artist` (a string) parameter
+    function findByArtist( artist ){
+    //   - Create an array to hold any results, empty to start:
+        let results = [];
+    //   - Loop through the `collection` and add any objects with a matching artist to the array.
+        for ( let i=0; i<collection.length; i++){
+            if (collection[i].recordArtist=== artist ){
+                results.push(collection[i]);
+            }
+        } //end for loop
+    //   - Return the array with the matching results. If no results are found, return an empty array.
+        return results;
+    } //end function 
+    
+    // Test the `findByArtist` function. Make sure to test with an artist you know is in the collection
+    //as well as an artist you know is not in your collection. 
+    //Check that for artists with multiple matches, all are found.
+    
+    console.log('How many records by Wilco', findByArtist( 'Wilco' ));
 
-// - Add a function named `showCollection`. This function should:
-//   - Take in an array parameter. (This allows it to be reused to show any collection, like the results from the find or search.)
-//   - Console.log the number of items in the array.
-//   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
+// ### Stretch goals
 
-// - Test the `showCollection` function.
+// - Create a function called `search`. This function should:
+//   - Take an input parameter for a search criteria object. Create your solution based on a search object that has these properties:
+//   ```
+//   { artist: 'Ray Charles', year: 1957 }
+//   ```
+//   - The returned output from `search` should meet these requirements:
+//     - Return a new array of all items in the `collection` matching *all* of the search criteria.
+//     - If no results are found, return an empty array.
+//     - If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
 
-// - Add a function named `findByArtist`. This function should:
-//   - Take in `artist` (a string) parameter
-//   - Create an array to hold any results, empty to start
-//   - Loop through the `collection` and add any objects with a matching artist to the array.
-//   - Return the array with the matching results. If no results are found, return an empty array.
+// - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
+//   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
+//   - Update `search` to allow a `trackName` search criteria.
+//   - Update the `showCollection` function to display the list of tracks for each album with its name and duration.
+// ```
+//     TITLE by ARTIST, published in YEAR:
+//     1. NAME: DURATION
+//     2. NAME: DURATION
+//     3. NAME: DURATION
+//     TITLE by ARTIST, published in YEAR:
+//     1. NAME: DURATION
+//     2. NAME: DURATION
+// ```
 
-// - Test the `findByArtist` function. Make sure to test with an artist you know is in the collection, as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are found.
-
-// > When testing your functions, write all tests in the JavaScript file!
+// > Make sure to test all your code 
