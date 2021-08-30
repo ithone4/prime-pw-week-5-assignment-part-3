@@ -59,7 +59,7 @@ function showCollection( anyCollection ){
         console.log( anyCollection.length);
     //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
         for ( i=0; i<anyCollection.length; i++){
-            console.log( anyCollection[i].recordTitle, 'by', anyCollection[i].recordArtist, ', published in', anyCollection[i].albumYear, '.');
+            console.log( anyCollection[i].recordTitle, 'by', anyCollection[i].recordArtist, ', published in', anyCollection[i].recordYear, '.');
            //   - Update the `showCollection` function to display the list of tracks for 
         } //end for loop
     } //end showCollection function
